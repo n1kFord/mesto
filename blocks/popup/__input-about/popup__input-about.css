@@ -1,18 +1,18 @@
-.popup__container__input-name{
+.popup__input-about{
     width: 358px;
-    margin: 54px auto 0;
+    margin: 30px auto 0;
     padding: 0 0 10px;
     outline: none;
     border: 0;
     border-bottom: 1px solid rgba(0,0,0,.2);
 }
 
-.popup__container__input-name:focus{
+.popup__input-about:focus{
     border-bottom: 1px solid #696969;
 }
 
 @media screen and (max-width: 586px){
-    .popup__container__input-name{
+    .popup__input-about{
         width: 238px;
     }
 }

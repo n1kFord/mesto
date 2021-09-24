@@ -6,8 +6,8 @@ let formElement = document.querySelector(".popup__form");
 let nameInput = document.querySelector(".popup__container__input-name");
 let aboutInput = document.querySelector(".popup__container__input-about");
 
-let userName = document.querySelector(".profile__info__title");
-let userAbout = document.querySelector(".profile__info__subtitle");
+let userName = document.querySelector(".profile__info__name");
+let userAbout = document.querySelector(".profile__info__about");
 
 editButton.addEventListener("click", function () {
   popup.classList.add("popup_opened");
@@ -31,7 +31,7 @@ function formSubmitHandler(evt) {
 formElement.addEventListener("submit", formSubmitHandler);
 
 /* нижеперечисленное - для рабочих лайков. */
-let elementLikes = document.querySelectorAll(".elements__card__like");
+let elementLikes = document.querySelectorAll(".element__like");
 for (let elementLike of elementLikes) {
   elementLike.addEventListener("click", function () {
     let realSrc = elementLike.getAttribute("src");

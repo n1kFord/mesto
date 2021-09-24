@@ -1,11 +1,11 @@
-.elements__card__like{
+.element__like{
     width: 22px;
     height: 19px;
     cursor: pointer;
     transition: .2s ease-in-out;
 }
 
-.elements__card__like:hover{
+.element__like:hover{
     opacity: 60%;
     transition: .2s ease-in;
 }

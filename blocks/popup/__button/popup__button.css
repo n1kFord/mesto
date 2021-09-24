@@ -1,4 +1,4 @@
-.popup__container__button{
+.popup__button{
     margin: 48px auto 0;
     color: white;
     width: 358px;
@@ -9,18 +9,18 @@
     cursor: pointer;
 }
 
-.popup__container__button:hover{
+.popup__button:hover{
     background-color: #494949;
     transition: .2s linear;
 }
 
-.popup__container__button:focus{
+.popup__button:focus{
     background-color: #292929;
     transition: .2s linear;
 }
 
 @media screen and (max-width: 586px){
-    .popup__container__button{
+    .popup__button{
         margin-top: 45px;
         font-size: 14px;
         line-height: 16.94px;

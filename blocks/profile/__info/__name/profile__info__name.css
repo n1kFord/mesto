@@ -1,4 +1,4 @@
-.profile__info__title{
+.profile__info__name{
     margin: 0;
     padding: 0;
     color: white;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 420px){
-    .profile__info__title{
+    .profile__info__name{
         font-size: 27px;
         line-height: 32.68px;
     }
