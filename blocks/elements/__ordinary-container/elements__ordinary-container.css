@@ -1,0 +1,15 @@
+.elements__ordinary-container{
+    margin: 25px auto 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 246px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 23px;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
