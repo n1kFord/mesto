@@ -1,13 +1,13 @@
 let popup = document.querySelector(".popup");
 let popupOpened = document.querySelector(".popup_opened");
-let editButton = document.querySelector(".profile__info__edit-button");
+let editButton = document.querySelector(".profile__edit-button");
 let closeIcon = document.querySelector(".popup__close-icon");
 let formElement = document.querySelector(".popup__form");
-let nameInput = document.querySelector(".popup__container__input-name");
-let aboutInput = document.querySelector(".popup__container__input-about");
+let nameInput = document.querySelector(".popup__input-name");
+let aboutInput = document.querySelector(".popup__input-about");
 
-let userName = document.querySelector(".profile__info__name");
-let userAbout = document.querySelector(".profile__info__about");
+let userName = document.querySelector(".profile__name");
+let userAbout = document.querySelector(".profile__about");
 
 editButton.addEventListener("click", function () {
   popup.classList.add("popup_opened");

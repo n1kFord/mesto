@@ -1,4 +1,4 @@
-.profile__info__about{
+.profile__about{
     margin: 16px 0 0 0;
     padding: 0;
     color: white;
@@ -10,19 +10,19 @@
 }
 
 @media screen and (max-width: 760px){
-    .profile__info__about{
+    .profile__about{
         margin-top: 10px;
     }
 }
 
 @media screen and (max-width: 550px){
-    .profile__info__about{
+    .profile__about{
         margin-top: 14px;
     }
 }
 
 @media screen and (max-width: 420px){
-    .profile__info__about{
+    .profile__about{
         font-size: 14px;
         line-height: 16.94px;
     }
