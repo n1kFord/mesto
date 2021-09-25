@@ -2,7 +2,12 @@
     position: absolute;
     top: -40px;
     right: -40px;
-    background-image: url('../../../images/popup__container_after.png');
+    background-image: url('../../../images/popup__container_after.svg');
+    border: 0;
+    margin: 0;  
+    padding: 0;
+    outline: none;
+    background-color: transparent;
     width: 32px;
     height: 32px;
     content: ' ';
@@ -21,6 +26,7 @@
         width: 20px;
         height: 20px;
         background-size: 20px;
+        top: -35px;
         right: 0;
     }
 }

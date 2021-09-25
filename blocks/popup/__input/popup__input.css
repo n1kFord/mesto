@@ -1,4 +1,4 @@
-.popup__input-about{
+.popup__input{
     width: 358px;
     margin: 30px auto 0;
     padding: 0 0 10px;
@@ -7,12 +7,12 @@
     border-bottom: 1px solid rgba(0,0,0,.2);
 }
 
-.popup__input-about:focus{
+.popup__input:focus{
     border-bottom: 1px solid #696969;
 }
 
 @media screen and (max-width: 586px){
-    .popup__input-about{
+    .popup__input{
         width: 238px;
     }
 }
