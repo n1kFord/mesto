@@ -5,7 +5,6 @@
     flex-direction: row;
     width: 246px;
     justify-content: space-between;
-    height: 27px;
     align-items: center;
     text-overflow: ellipsis;
     white-space: nowrap;

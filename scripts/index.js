@@ -9,21 +9,17 @@ let userName = document.querySelector(".profile__name");
 let userAbout = document.querySelector(".profile__about");
 
 function openPopup() {
-  popup.classList.add("popup_opened");
   nameInput.value = userName.textContent;
   aboutInput.value = userAbout.textContent;
+  popup.classList.add("popup_opened");
 }
 
 function closePopup() {
   popup.classList.remove("popup_opened");
 }
-editButton.addEventListener("click", function () {
-  openPopup();
-});
+editButton.addEventListener("click", openPopup);
 
-closeIcon.addEventListener("click", function () {
-  closePopup();
-});
+closeIcon.addEventListener("click", closePopup);
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
