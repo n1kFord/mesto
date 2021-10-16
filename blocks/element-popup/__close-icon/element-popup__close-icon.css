@@ -1,8 +1,8 @@
-.element__popup__close-icon{
+.element-popup__close-icon{
     position: absolute;
     top: -40px;
     right: -40px;
-    background-image: url('../../../../images/popup__container_after.svg');
+    background-image: url('../../../images/popup__container_after.svg');
     border: 0;
     margin: 0;
     padding: 0;
@@ -16,13 +16,13 @@
     transition: .2s linear;
 }
 
-.element__popup__close-icon:hover{
+.element-popup__close-icon:hover{
     opacity: .5;
     transition: .2s linear;
 }
 
 @media screen and (max-width: 586px){
-    .element__popup__close-icon{
+    .element-popup__close-icon{
         width: 20px;
         height: 20px;
         background-size: 20px;

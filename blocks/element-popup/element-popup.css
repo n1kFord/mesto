@@ -1,4 +1,4 @@
-.element__popup {
+.element-popup {
     position: fixed;
     top: 0;
     right: 0;
@@ -16,7 +16,7 @@
     transition: 0.2s linear;
   }
   
-  .element__popup + .element__popup {
+  .element-popup + .element-popup {
     height: 0;
     transition-property: opacity, height;
     transition-duration: 1s, 0s;

@@ -1,11 +1,11 @@
 let popup = document.querySelector(".popup");
-let elementPopup = document.querySelector(".element__popup");
-let elementPopupImage = document.querySelector(".element__popup__image");
-let elementPopupText = document.querySelector(".element__popup__text");
+let elementPopup = document.querySelector(".element-popup");
+let elementPopupImage = document.querySelector(".element-popup__image");
+let elementPopupText = document.querySelector(".element-popup__text");
 let editButton = document.querySelector(".profile__edit-button");
 let closeIcon = document.querySelector(".popup__close-icon");
 let elementPopupCloseIcon = document.querySelector(
-  ".element__popup__close-icon"
+  ".element-popup__close-icon"
 );
 let addCardPopup = document.querySelector(".popup-card-add");
 let cardPopupCloseIcon = document.querySelector(".popup-card-add__close-icon");
@@ -68,7 +68,7 @@ document.body.addEventListener("click", function (event) {
   if (event.target.classList.contains("element__like")) {
     event.target.classList.toggle("element__like_type_active");
   } else if (event.target.classList.contains("element__image")) {
-    elementPopup.classList.toggle("element__popup_opened");
+    elementPopup.classList.toggle("element-popup_opened");
     elementPopupImage.src = event.target.src;
 
     let fullElement = event.target.closest(".element");
@@ -97,7 +97,7 @@ function openPopup() {
 
 function closePopup() {
   popup.classList.remove("popup_opened");
-  elementPopup.classList.remove("element__popup_opened");
+  elementPopup.classList.remove("element-popup_opened");
 }
 
 editButton.addEventListener("click", openPopup);
