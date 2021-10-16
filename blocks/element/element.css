@@ -4,12 +4,13 @@
     margin: 20px 0 0 17px;
     padding: 0;
     border-radius: 10px;
+    position: relative;
     background-color: white;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.element:nth-child(3n+1){
+.element:nth-child(1n+1){
     margin-left: 0;
 }
 

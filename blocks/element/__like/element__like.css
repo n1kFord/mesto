@@ -12,7 +12,3 @@
     opacity: 60%;
     transition: .2s ease-in;
 }
-
-.element__like:active{
-    background-image: url('../../../images/elements__card__like_active.svg');
-}

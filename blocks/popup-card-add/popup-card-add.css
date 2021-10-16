@@ -1,4 +1,4 @@
-.popup{
+.popup-card-add{
     position: fixed;
     top: 0;
     display: flex;
@@ -9,9 +9,9 @@
     background-color: black;
     background-color: rgba(0,0,0,0.5);
     transition: .2s linear;
-}
-
-.popup + .popup{
+  }
+  
+  .popup-card-add + .popup-card-add{
     height: 0;
     transition-property: opacity, height;
     transition-duration: 1s, 0s;

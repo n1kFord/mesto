@@ -33,85 +33,47 @@
               <p class="profile__about">Исследователь океана</p>
             </div>
 
-            <button type="button" class="profile__edit-button" aria-label="редактировать профиль"></button>
+            <button
+              type="button"
+              class="profile__edit-button"
+              aria-label="редактировать профиль"
+            ></button>
           </div>
         </div>
         <button type="button" class="profile__button"></button>
       </section>
 
       <section class="elements">
-        <!-- я бы сделал cards и card, но в фигме они называются как elements и element -->
-        <article class="element">
-          <img
-            src="images/elements__card__main-image.jpg"
-            class="element__image"
-            alt="карачаевск"
-          />
-          <div class="elements__ordinary-container">
-            <h2 class="element__text">Карачаевск</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
+        <template id="element">
+          <article class="element">
+            <img
+              src="images/elements__card__main-image(1).png"
+              class="element__image"
+              alt="карачаевск"
+            />
+            <img
+              src="images/element__delete-icon.png"
+              class="element__delete-icon"
+              alt="иконка удаления"
+            />
+            <div class="elements__ordinary-container">
+              <h2 class="element__text">Карачаевск</h2>
+              <button type="button" class="element__like"></button>
+            </div>
+          </article>
+        </template>
 
-        <article class="element">
-          <img
-            src="images/elements__card__main-image(1).png"
-            class="element__image"
-            alt="гора эльбрус"
-          />
-          <div class="elements__ordinary-container">
-            <h2 class="element__text">Гора Эльбрус</h2>
-            <button type="button" class="element__like"></button>
+        <div class="element__popup">
+          <div class="element__popup__container">
+            <button type="button" class="element__popup__close-icon"></button>
+            <img
+              src="images/elements__card__main-image.jpg"
+              class="element__popup__image"
+              alt="Карачаево-Черкесия"
+            />
+            <p class="element__popup__text">Карачаево-Черкессия</p>
           </div>
-        </article>
-
-        <article class="element">
-          <img
-            src="images/elements__card__main-image(2).png"
-            class="element__image"
-            alt="домбай"
-          />
-          <div class="elements__ordinary-container">
-            <h2 class="element__text">Домбай</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img
-            src="images/elements__card__main-image(1).png"
-            class="element__image"
-            alt="гора эльбрус"
-          />
-          <div class="elements__ordinary-container">
-            <h2 class="element__text">Гора Эльбрус</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img
-            src="images/elements__card__main-image(2).png"
-            class="element__image"
-            alt="домбай"
-          />
-          <div class="elements__ordinary-container">
-            <h2 class="element__text">Домбай</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-
-        <article class="element">
-          <img
-            src="images/elements__card__main-image.jpg"
-            class="element__image"
-            alt="карачаево-черкесия"
-          />
-          <div class="elements__ordinary-container">
-            <h2 class="element__text">Карачаево-Черкесия</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
+        </div>
       </section>
     </main>
 
@@ -119,7 +81,7 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 
-    <!--overlay-->
+    <!--overlays-->
     <article class="popup">
       <div class="popup__container">
         <button type="button" class="popup__close-icon"></button>
@@ -140,6 +102,32 @@
             placeholder="о себе"
           />
           <button type="submit" class="popup__button">Сохранить</button>
+        </form>
+      </div>
+    </article>
+    <!--edit-->
+
+    <!--add-->
+    <article class="popup-card-add">
+      <div class="popup__container">
+        <button type="button" class="popup-card-add__close-icon"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup-card-add__form" name="add">
+          <input
+            type="text"
+            class="popup__input popup__input_type_card-name"
+            name="cardname"
+            required
+            placeholder="Название"
+          />
+          <input
+            type="url"
+            class="popup__input popup__input_type_card-link"
+            name="link"
+            required
+            placeholder="Ссылка на картинку"
+          />
+          <button type="submit" class="popup__button">Создать</button>
         </form>
       </div>
     </article>
