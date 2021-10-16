@@ -1,20 +1,20 @@
-.popup{
-    position: fixed;
-    top: 0;
-    display: flex;
-    opacity: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    background-color: black;
-    background-color: rgba(0,0,0,0.5);
-    transition: .2s linear;
+.popup {
+  position: fixed;
+  top: 0;
+  display: flex;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.2s linear;
 }
 
-.popup + .popup{
-    height: 0;
-    transition-property: opacity, height;
-    transition-duration: 1s, 0s;
-    transition-delay: 0s, 1s;
-    opacity: 0;
-  }
+.popup + .popup {
+  height: 0;
+  transition-property: opacity, height;
+  transition-duration: 1s, 0s;
+  transition-delay: 0s, 1s;
+  opacity: 0;
+}

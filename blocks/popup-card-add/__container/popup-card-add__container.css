@@ -1,4 +1,4 @@
-.popup__container {
+.popup-card-add__container {
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 586px) {
-  .popup__container {
+  .popup-card-add__container {
     width: 282px;
     min-height: 322px;
   }

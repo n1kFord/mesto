@@ -56,8 +56,12 @@
 /* ---start of |popup-card-add|*/
 @import url("../blocks/popup-card-add/popup-card-add.css");
 @import url("../blocks/popup-card-add/popup-card-add_opened.css");
-@import url("../blocks/popup-card-add/__close-icon/popup-card-add__close-icon.css");
+@import url("../blocks/popup-card-add/__container/popup-card-add__container.css");
+@import url("../blocks/popup-card-add/__title/popup-card-add__title.css");
 @import url("../blocks/popup-card-add/__form/popup-card-add__form.css");
+@import url("../blocks/popup-card-add/__input/popup-card-add__input.css");
+@import url("../blocks/popup-card-add/__close-icon/popup-card-add__close-icon.css");
+@import url("../blocks/popup-card-add/__button/popup-card-add__button.css");
 /*____end of |popup-card-add|--*/
 
 /* --start of |element-popup|--*/

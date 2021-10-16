@@ -1,4 +1,4 @@
-.popup__button {
+.popup-card-add__button {
   margin: 48px auto 0;
   color: white;
   width: 358px;
@@ -9,18 +9,18 @@
   cursor: pointer;
 }
 
-.popup__button:hover {
+.popup-card-add__button:hover {
   background-color: #494949;
   transition: 0.2s linear;
 }
 
-.popup__button:focus {
+.popup-card-add__button:focus {
   background-color: #292929;
   transition: 0.2s linear;
 }
 
 @media screen and (max-width: 586px) {
-  .popup__button {
+  .popup-card-add__button {
     margin-top: 45px;
     font-size: 14px;
     line-height: 16.94px;

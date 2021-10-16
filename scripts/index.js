@@ -13,8 +13,12 @@ let formElement = document.querySelector(".popup__form");
 let nameInput = document.querySelector(".popup__input_type_name");
 let aboutInput = document.querySelector(".popup__input_type_about");
 let cardPopupForm = document.querySelector(".popup-card-add__form");
-let cardNameInput = document.querySelector(".popup__input_type_card-name");
-let cardLinkInput = document.querySelector(".popup__input_type_card-link");
+let cardNameInput = document.querySelector(
+  ".popup-card-add__input_type_card-name"
+);
+let cardLinkInput = document.querySelector(
+  ".popup-card-add__input_type_card-link"
+);
 let userName = document.querySelector(".profile__name");
 let userAbout = document.querySelector(".profile__about");
 let cardAddButton = document.querySelector(".profile__button");
