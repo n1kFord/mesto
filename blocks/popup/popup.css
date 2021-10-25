@@ -11,10 +11,3 @@
   transition: 0.2s linear;
 }
 
-.popup + .popup {
-  height: 0;
-  transition-property: opacity, height;
-  transition-duration: 1s, 0s;
-  transition-delay: 0s, 1s;
-  opacity: 0;
-}
