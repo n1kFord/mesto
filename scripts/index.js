@@ -14,6 +14,7 @@ const cardLinkInput = document.querySelector(".popup__input_type_card-link");
 const userName = document.querySelector(".profile__name");
 const userAbout = document.querySelector(".profile__about");
 const cardAddButton = document.querySelector(".profile__button");
+
 const initialCards = [
   {
     name: "Архыз",
@@ -86,6 +87,15 @@ cardAddButton.addEventListener("click", function () {
 
 function openPopup(overlay) {
   overlay.classList.add("popup_opened");
+  /* при запуске оверлея profile-edit - всегда берутся значения из самого профиля. но если очистить поля в оверлее и закрыть/открыть - поля будут заполнены верными значениями, 
+   но ошибки в инпутах останутся, данный код валидирует инпуты при открытии поп'апа. */
+  const inputs = overlay.querySelectorAll('.popup__input');
+  inputs.forEach((input) => {
+    if(input.validity.valid){
+      hideInputError(overlay, input);
+    }
+  }) /* ---- */
+  
 }
 
 function closePopup(overlay) {
@@ -111,6 +121,11 @@ function profileFormSubmitHandler(evt) {
   const about = aboutInput.value;
   userName.textContent = name;
   userAbout.textContent = about;
+  /* добавление состоянии неактивности кнопки до закрытия попапа */
+  const popupButton = popupProfileEdit.querySelector('.popup__button');
+  popupButton.classList.add('popup__button_type_inactive');
+  popupButton.setAttribute("disabled", true);
+  /* -------------------- */
   closePopup(popupProfileEdit);
 }
 
@@ -123,7 +138,35 @@ function cardPopupFormSubmit(evt) {
   renderCard(cardName, cardLink);
   cardNameInput.value = "";
   cardLinkInput.value = "";
+  /* добавление состоянии неактивности кнопки до закрытия попапа */
+  const popupButton = popupCardAdd.querySelector('.popup__button');
+  popupButton.classList.add('popup__button_type_inactive');
+  popupButton.setAttribute("disabled", true);
   closePopup(popupCardAdd);
+  /* -------------------- */
 }
 
 cardPopupForm.addEventListener("submit", cardPopupFormSubmit);
+
+/* ------закрытие любого оверлея по нажатию за его пределами / по нажатию esc -------*/
+
+const popups = document.querySelectorAll(".popup");
+popups.forEach((popup) => {
+  popup.addEventListener("click", function(evt){
+    if (!evt.target.classList.contains("popup")){
+      return;
+    }
+    else{
+      closePopup(popup);
+    }
+  })
+
+  document.addEventListener("keydown", function(evt){
+    if(evt.key === 'Escape'){
+      closePopup(popup);
+    }
+  })
+}) /* ------- */
+
+
+

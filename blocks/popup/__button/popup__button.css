@@ -1,5 +1,5 @@
 .popup__button {
-  margin: 48px auto 0;
+  margin: 28px auto 0; /* изменил отступ т.к. при ошибках кнопка слишком сильно съезжает вниз */
   color: white;
   width: 358px;
   height: 50px;
@@ -10,7 +10,7 @@
 }
 
 .popup__button:hover {
-  background-color: #494949;
+  background: rgba(0, 0, 0, 0.8);
   transition: 0.2s linear;
 }
 
