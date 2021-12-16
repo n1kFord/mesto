@@ -1,8 +1,8 @@
 const popupProfileEdit = document.querySelector(".profile-edit-popup");
-const popupElement = document.querySelector(".element-popup");
+const imagePopup = document.querySelector(".element-popup");
 const popupCardAdd = document.querySelector(".card-add-popup");
-const elementPopupImage = document.querySelector(".element-popup__image");
-const elementPopupText = document.querySelector(".element-popup__text");
+const imagePopupImage = document.querySelector(".element-popup__image");
+const imagePopupText = document.querySelector(".element-popup__text");
 const editButton = document.querySelector(".profile__edit-button");
 const closeIcons = document.querySelectorAll(".popup__close-icon");
 const profileEditForm = document.querySelector(".popup__form_type_edit");
@@ -56,9 +56,10 @@ function createCard(text, img) {
   cardImage.alt = text;
 
   cardImage.addEventListener("click", function () {
-    openPopup(popupElement);
-    elementPopupImage.src = cardImage.src;
-    elementPopupText.textContent = cardText.textContent;
+    openPopup(imagePopup);
+    imagePopupImage.src = cardImage.src;
+    imagePopupImage.alt = cardText.textContent;
+    imagePopupText.textContent = cardText.textContent;
   });
 
   cardLike.addEventListener("click", function () {
@@ -87,24 +88,25 @@ cardAddButton.addEventListener("click", function () {
 
 function openPopup(overlay) {
   overlay.classList.add("popup_opened");
-  /* при запуске оверлея profile-edit - всегда берутся значения из самого профиля. но если очистить поля в оверлее и закрыть/открыть - поля будут заполнены верными значениями, 
-   но ошибки в инпутах останутся, данный код валидирует инпуты при открытии поп'апа. */
-  const inputs = overlay.querySelectorAll('.popup__input');
-  inputs.forEach((input) => {
-    if(input.validity.valid){
-      hideInputError(overlay, input);
-    }
-  }) /* ---- */
-  
+  document.addEventListener("keydown", closeByEscape);
 }
 
 function closePopup(overlay) {
   overlay.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeByEscape);
 }
 
 editButton.addEventListener("click", function () {
   nameInput.value = userName.textContent;
   aboutInput.value = userAbout.textContent;
+
+  const inputs = popupProfileEdit.querySelectorAll(".popup__input");
+  inputs.forEach((input) => {
+    if (input.validity.valid) {
+      hideError(popupProfileEdit, input);
+    }
+  });
+
   openPopup(popupProfileEdit);
 });
 
@@ -122,8 +124,8 @@ function profileFormSubmitHandler(evt) {
   userName.textContent = name;
   userAbout.textContent = about;
   /* добавление состоянии неактивности кнопки до закрытия попапа */
-  const popupButton = popupProfileEdit.querySelector('.popup__button');
-  popupButton.classList.add('popup__button_type_inactive');
+  const popupButton = popupProfileEdit.querySelector(".popup__button");
+  popupButton.classList.add("popup__button_type_inactive");
   popupButton.setAttribute("disabled", true);
   /* -------------------- */
   closePopup(popupProfileEdit);
@@ -139,8 +141,8 @@ function cardPopupFormSubmit(evt) {
   cardNameInput.value = "";
   cardLinkInput.value = "";
   /* добавление состоянии неактивности кнопки до закрытия попапа */
-  const popupButton = popupCardAdd.querySelector('.popup__button');
-  popupButton.classList.add('popup__button_type_inactive');
+  const popupButton = popupCardAdd.querySelector(".popup__button");
+  popupButton.classList.add("popup__button_type_inactive");
   popupButton.setAttribute("disabled", true);
   closePopup(popupCardAdd);
   /* -------------------- */
@@ -152,21 +154,18 @@ cardPopupForm.addEventListener("submit", cardPopupFormSubmit);
 
 const popups = document.querySelectorAll(".popup");
 popups.forEach((popup) => {
-  popup.addEventListener("click", function(evt){
-    if (!evt.target.classList.contains("popup")){
+  popup.addEventListener("click", function (evt) {
+    if (!evt.target.classList.contains("popup")) {
       return;
-    }
-    else{
+    } else {
       closePopup(popup);
     }
-  })
+  });
+}); /* ------- */
 
-  document.addEventListener("keydown", function(evt){
-    if(evt.key === 'Escape'){
-      closePopup(popup);
-    }
-  })
-}) /* ------- */
-
-
-
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+}
