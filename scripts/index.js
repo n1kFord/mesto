@@ -1,8 +1,11 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const popupProfileEdit = document.querySelector(".profile-edit-popup");
-const imagePopup = document.querySelector(".element-popup");
+export const imagePopup = document.querySelector(".element-popup");
 const popupCardAdd = document.querySelector(".card-add-popup");
-const imagePopupImage = document.querySelector(".element-popup__image");
-const imagePopupText = document.querySelector(".element-popup__text");
+export const imagePopupImage = document.querySelector(".element-popup__image");
+export const imagePopupText = document.querySelector(".element-popup__text");
 const editButton = document.querySelector(".profile__edit-button");
 const closeIcons = document.querySelectorAll(".popup__close-icon");
 const profileEditForm = document.querySelector(".popup__form_type_edit");
@@ -41,52 +44,36 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+/* включение валидации форм */
+const forms = document.querySelectorAll(".popup__form");
+forms.forEach((form) => {
+  const validator = new FormValidator(form, {
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inputErrorClass: "popup__input_type_error",
+    inactiveButtonClass: "popup__button_type_inactive",
+  });
+  validator.enableValidation();
+});
+/* -------------- */
 
-const cardTemplate = document.querySelector("#element").content;
 const cardContainer = document.querySelector(".elements");
-function createCard(text, img) {
-  const card = cardTemplate.querySelector(".element").cloneNode(true);
 
-  const cardText = card.querySelector(".element__text");
-  const cardImage = card.querySelector(".element__image");
-  const cardLike = card.querySelector(".element__like");
-  const cardDeleteIcon = card.querySelector(".element__delete-icon");
-  cardText.textContent = text;
-  cardImage.src = img;
-  cardImage.alt = text;
-
-  cardImage.addEventListener("click", function () {
-    openPopup(imagePopup);
-    imagePopupImage.src = cardImage.src;
-    imagePopupImage.alt = cardText.textContent;
-    imagePopupText.textContent = cardText.textContent;
-  });
-
-  cardLike.addEventListener("click", function () {
-    cardLike.classList.toggle("element__like_type_active");
-  });
-
-  cardDeleteIcon.addEventListener("click", function () {
-    const fullElement = cardDeleteIcon.closest(".element");
-    fullElement.remove();
-  });
-  return card;
-} /* функция создания карточки*/
-
-function renderCard(text, img) {
-  const createdCard = createCard(text, img);
+function renderCard(text, img, cardSelector) {
+  const card = new Card(text, img, cardSelector);
+  const createdCard = card.generateCard();
   cardContainer.prepend(createdCard);
 } /* функция добавления карточки в контейнер*/
 
 initialCards.forEach((item) => {
-  renderCard(item.name, item.link);
+  renderCard(item.name, item.link, "element");
 }); /* первичное добавление 6-ти карточек */
 
 cardAddButton.addEventListener("click", function () {
   openPopup(popupCardAdd);
 });
 
-function openPopup(overlay) {
+export function openPopup(overlay) {
   overlay.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
 }
@@ -103,9 +90,14 @@ editButton.addEventListener("click", function () {
   const inputs = popupProfileEdit.querySelectorAll(".popup__input");
   inputs.forEach((input) => {
     if (input.validity.valid) {
-      hideError(popupProfileEdit, input);
+      console.log(input.closest(".popup__form"));
+      const errorMessage = input
+        .closest(".popup__form")
+        .querySelector(`.${input.id}-error`);
+      errorMessage.textContent = "";
+      input.classList.remove("popup__input_type_error");
     }
-  });
+  }); /* багфикс появления ошибки после перезахода в оверлей */
 
   openPopup(popupProfileEdit);
 });
@@ -137,7 +129,7 @@ function cardPopupFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
-  renderCard(cardName, cardLink);
+  renderCard(cardName, cardLink, "element");
   cardNameInput.value = "";
   cardLinkInput.value = "";
   /* добавление состоянии неактивности кнопки до закрытия попапа */
