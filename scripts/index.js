@@ -45,16 +45,19 @@ const initialCards = [
   },
 ];
 /* включение валидации форм */
-const forms = document.querySelectorAll(".popup__form");
-forms.forEach((form) => {
-  const validator = new FormValidator(form, {
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button",
-    inputErrorClass: "popup__input_type_error",
-    inactiveButtonClass: "popup__button_type_inactive",
-  });
-  validator.enableValidation();
-});
+const config = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inputErrorClass: "popup__input_type_error",
+  inactiveButtonClass: "popup__button_type_inactive",
+};
+
+const editFormValidator = new FormValidator(profileEditForm, config);
+editFormValidator.enableValidation();
+
+const cardFormValidator = new FormValidator(cardPopupForm, config);
+cardFormValidator.enableValidation();
+
 /* -------------- */
 
 const cardContainer = document.querySelector(".elements");
@@ -62,11 +65,15 @@ const cardContainer = document.querySelector(".elements");
 function renderCard(text, img, cardSelector) {
   const card = new Card(text, img, cardSelector);
   const createdCard = card.generateCard();
-  cardContainer.prepend(createdCard);
-} /* функция добавления карточки в контейнер*/
+  return createdCard;
+}
+
+function pushCard(newCard) {
+  cardContainer.prepend(newCard);
+}
 
 initialCards.forEach((item) => {
-  renderCard(item.name, item.link, "element");
+  pushCard(renderCard(item.name, item.link, "element"));
 }); /* первичное добавление 6-ти карточек */
 
 cardAddButton.addEventListener("click", function () {
@@ -86,18 +93,24 @@ function closePopup(overlay) {
 editButton.addEventListener("click", function () {
   nameInput.value = userName.textContent;
   aboutInput.value = userAbout.textContent;
-
-  const inputs = popupProfileEdit.querySelectorAll(".popup__input");
-  inputs.forEach((input) => {
-    if (input.validity.valid) {
-      console.log(input.closest(".popup__form"));
-      const errorMessage = input
-        .closest(".popup__form")
-        .querySelector(`.${input.id}-error`);
-      errorMessage.textContent = "";
-      input.classList.remove("popup__input_type_error");
-    }
-  }); /* багфикс появления ошибки после перезахода в оверлей */
+  const submitButton = profileEditForm.querySelector(
+    config.submitButtonSelector
+  );
+  const inputs = profileEditForm.querySelectorAll(".popup__input");
+  editFormValidator.toggleButtonError(
+    inputs,
+    submitButton,
+    config.inactiveButtonClass
+  );
+  if (submitButton.disabled === false) {
+    inputs.forEach((input) => {
+      editFormValidator.hideError(
+        profileEditForm,
+        input,
+        config.inactiveButtonClass
+      );
+    });
+  } /* багфикс появления ошибки после перезахода в оверлей + активная кнопка, если при заходе в оверлей все инпуты выладины */
 
   openPopup(popupProfileEdit);
 });
@@ -109,41 +122,32 @@ for (const closeIcon of closeIcons) {
   });
 }
 
-function profileFormSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   const name = nameInput.value;
   const about = aboutInput.value;
   userName.textContent = name;
   userAbout.textContent = about;
-  /* добавление состоянии неактивности кнопки до закрытия попапа */
-  const popupButton = popupProfileEdit.querySelector(".popup__button");
-  popupButton.classList.add("popup__button_type_inactive");
-  popupButton.setAttribute("disabled", true);
-  /* -------------------- */
   closePopup(popupProfileEdit);
 }
 
-profileEditForm.addEventListener("submit", profileFormSubmitHandler);
+profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 
-function cardPopupFormSubmit(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
-  renderCard(cardName, cardLink, "element");
-  cardNameInput.value = "";
-  cardLinkInput.value = "";
+  pushCard(renderCard(cardName, cardLink, "element"));
+  cardPopupForm.reset();
   /* добавление состоянии неактивности кнопки до закрытия попапа */
-  const popupButton = popupCardAdd.querySelector(".popup__button");
-  popupButton.classList.add("popup__button_type_inactive");
-  popupButton.setAttribute("disabled", true);
+  cardFormValidator.disableSubmitButton(cardPopupForm);
   closePopup(popupCardAdd);
   /* -------------------- */
 }
 
-cardPopupForm.addEventListener("submit", cardPopupFormSubmit);
+cardPopupForm.addEventListener("submit", handleCardFormSubmit);
 
 /* ------закрытие любого оверлея по нажатию за его пределами / по нажатию esc -------*/
-
 const popups = document.querySelectorAll(".popup");
 popups.forEach((popup) => {
   popup.addEventListener("click", function (evt) {

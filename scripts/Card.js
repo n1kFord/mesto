@@ -4,6 +4,7 @@ import {
   imagePopupImage,
   imagePopupText,
 } from "./index.js";
+
 export default class Card {
   constructor(text, img, cardSelector) {
     this._text = text;
@@ -26,8 +27,9 @@ export default class Card {
 
     this._element.querySelector(".element__text").textContent = this._text;
 
-    this._element.querySelector(".element__image").src = this._img;
-    this._element.querySelector(".element__image").alt = this._text;
+    this._cardImage = this._element.querySelector(".element__image");
+    this._cardImage.src = this._img;
+    this._cardImage.alt = this._text;
 
     return this._element;
   }
@@ -37,26 +39,22 @@ export default class Card {
       .querySelector(".element__image")
       .addEventListener("click", () => {
         openPopup(imagePopup);
-        imagePopupImage.src =
-          this._element.querySelector(".element__image").src;
-        imagePopupImage.alt =
-          this._element.querySelector(".element__text").textContent;
-        imagePopupText.textContent =
-          this._element.querySelector(".element__text").textContent;
+        imagePopupImage.src = this._img;
+        imagePopupImage.alt = this._text;
+        imagePopupText.textContent = this._text;
       });
 
-    this._element
-      .querySelector(".element__like")
-      .addEventListener("click", () => {
-        this._element
-          .querySelector(".element__like")
-          .classList.toggle("element__like_type_active");
-      });
+    this._buttonLike = this._element.querySelector(".element__like");
+
+    this._buttonLike.addEventListener("click", () => {
+      this._buttonLike.classList.toggle("element__like_type_active");
+    });
 
     this._element
       .querySelector(".element__delete-icon")
       .addEventListener("click", () => {
         this._element.remove();
+        this._element = null;
       });
   }
 }

@@ -11,21 +11,26 @@ export default class FormValidator {
     const errorMessage = form.querySelector(`.${input.id}-error`);
     errorMessage.textContent = errorMessageText;
     input.classList.add(inputErrorClass);
-    console.log(inputErrorClass);
   }
 
-  _hideError(form, input, inputErrorClass) {
+  hideError(form, input, inputErrorClass) {
     const errorMessage = form.querySelector(`.${input.id}-error`);
     errorMessage.textContent = "";
     input.classList.remove(inputErrorClass);
   }
 
-  _hasInvalidInput(inputs) {
+  hasInvalidInput(inputs) {
     return Array.from(inputs).some((el) => !el.validity.valid);
   }
 
-  _toggleButtonError(inputs, button, inactiveButtonClass) {
-    if (this._hasInvalidInput(inputs)) {
+  disableSubmitButton(form) {
+    const submitButton = form.querySelector(this._submitButtonSelector);
+    submitButton.classList.add(this._inactiveButtonClass);
+    submitButton.disabled = true;
+  }
+
+  toggleButtonError(inputs, button, inactiveButtonClass) {
+    if (this.hasInvalidInput(inputs)) {
       button.classList.add(inactiveButtonClass);
       button.disabled = true;
     } else {
@@ -38,7 +43,7 @@ export default class FormValidator {
     if (!input.validity.valid) {
       this._showError(form, input, input.validationMessage, inputErrorClass);
     } else {
-      this._hideError(form, input, inputErrorClass);
+      this.hideError(form, input, inputErrorClass);
     }
   }
 
@@ -48,21 +53,13 @@ export default class FormValidator {
 
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
-        console.log(input);
         this._checkIfInputValid(this._form, input, this._inputErrorClass);
-        this._toggleButtonError(
-          inputs,
-          submitButton,
-          this._inactiveButtonClass
-        );
+        this.toggleButtonError(inputs, submitButton, this._inactiveButtonClass);
       });
     });
   }
 
   enableValidation() {
-    this._form.addEventListener("submit", (event) => {
-      event.preventDefault();
-    });
     this._setInputListeners(this._form);
   }
 }
