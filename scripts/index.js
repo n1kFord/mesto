@@ -11,7 +11,7 @@ const closeIcons = document.querySelectorAll(".popup__close-icon");
 const profileEditForm = document.querySelector(".popup__form_type_edit");
 const nameInput = document.querySelector(".popup__input_type_name");
 const aboutInput = document.querySelector(".popup__input_type_about");
-const cardPopupForm = document.querySelector(".popup__form_type_card-add");
+const cardAddForm = document.querySelector(".popup__form_type_card-add");
 const cardNameInput = document.querySelector(".popup__input_type_card-name");
 const cardLinkInput = document.querySelector(".popup__input_type_card-link");
 const userName = document.querySelector(".profile__name");
@@ -55,7 +55,7 @@ const config = {
 const editFormValidator = new FormValidator(profileEditForm, config);
 editFormValidator.enableValidation();
 
-const cardFormValidator = new FormValidator(cardPopupForm, config);
+const cardFormValidator = new FormValidator(cardAddForm, config);
 cardFormValidator.enableValidation();
 
 /* -------------- */
@@ -93,24 +93,10 @@ function closePopup(overlay) {
 editButton.addEventListener("click", function () {
   nameInput.value = userName.textContent;
   aboutInput.value = userAbout.textContent;
-  const submitButton = profileEditForm.querySelector(
-    config.submitButtonSelector
-  );
-  const inputs = profileEditForm.querySelectorAll(".popup__input");
-  editFormValidator.toggleButtonError(
-    inputs,
-    submitButton,
-    config.inactiveButtonClass
-  );
-  if (submitButton.disabled === false) {
-    inputs.forEach((input) => {
-      editFormValidator.hideError(
-        profileEditForm,
-        input,
-        config.inactiveButtonClass
-      );
-    });
-  } /* багфикс появления ошибки после перезахода в оверлей + активная кнопка, если при заходе в оверлей все инпуты выладины */
+  const inputs = editFormValidator.findFormInputs();
+  editFormValidator.resetError(inputs);
+  editFormValidator.toggleButtonError(inputs);
+  /* багфикс появления ошибки после перезахода в оверлей + активная кнопка, если при заходе в оверлей все инпуты выладины */
 
   openPopup(popupProfileEdit);
 });
@@ -138,14 +124,14 @@ function handleCardFormSubmit(evt) {
   const cardName = cardNameInput.value;
   const cardLink = cardLinkInput.value;
   pushCard(renderCard(cardName, cardLink, "element"));
-  cardPopupForm.reset();
+  cardAddForm.reset();
   /* добавление состоянии неактивности кнопки до закрытия попапа */
-  cardFormValidator.disableSubmitButton(cardPopupForm);
+  cardFormValidator.disableSubmitButton();
   closePopup(popupCardAdd);
   /* -------------------- */
 }
 
-cardPopupForm.addEventListener("submit", handleCardFormSubmit);
+cardAddForm.addEventListener("submit", handleCardFormSubmit);
 
 /* ------закрытие любого оверлея по нажатию за его пределами / по нажатию esc -------*/
 const popups = document.querySelectorAll(".popup");

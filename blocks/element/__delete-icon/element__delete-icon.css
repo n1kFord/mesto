@@ -1,12 +1,12 @@
 .element__delete-icon{
     position: absolute;
     z-index: 20;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 19px;
     top: 18px;
     right: 15px;
     cursor: pointer;
-    opacity: .5;
+    opacity: .9;
     transition: .2s linear;
   }
   
