@@ -93,10 +93,9 @@ function closePopup(overlay) {
 editButton.addEventListener("click", function () {
   nameInput.value = userName.textContent;
   aboutInput.value = userAbout.textContent;
-  const inputs = editFormValidator.findFormInputs();
-  editFormValidator.resetError(inputs);
-  editFormValidator.toggleButtonError(inputs);
-  /* багфикс появления ошибки после перезахода в оверлей + активная кнопка, если при заходе в оверлей все инпуты выладины */
+  editFormValidator.resetError();
+  editFormValidator.enableSubmitButton();
+  /* багфикс появления ошибки после перезахода в оверлей + активная кнопка, если при заходе в оверлей все инпуты валидны */
 
   openPopup(popupProfileEdit);
 });
@@ -143,11 +142,11 @@ popups.forEach((popup) => {
       closePopup(popup);
     }
   });
-}); /* ------- */
+});
 
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
-}
+} /* ------- */
