@@ -1,15 +1,9 @@
-import {
-  openPopup,
-  imagePopup,
-  imagePopupImage,
-  imagePopupText,
-} from "./index.js";
-
 export default class Card {
-  constructor(text, img, cardSelector) {
+  constructor(text, img, cardSelector, { handleCardClick }) {
     this._text = text;
     this._img = img;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -35,14 +29,11 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".element__image")
-      .addEventListener("click", () => {
-        openPopup(imagePopup);
-        imagePopupImage.src = this._img;
-        imagePopupImage.alt = this._text;
-        imagePopupText.textContent = this._text;
-      });
+    this._element.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("element__image")) { /* багфикс открытия попапа при нажатии на карточку за пределами изображения */
+        this._handleCardClick();
+      }
+    });
 
     this._buttonLike = this._element.querySelector(".element__like");
 

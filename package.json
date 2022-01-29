@@ -1,0 +1,35 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "forpraktikum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n1kFord/mesto.git"
+  },
+  "author": "n1kford.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n1kFord/mesto/issues"
+  },
+  "homepage": "https://github.com/n1kFord/mesto#readme",
+  "dependencies": {
+    "@babel/core": "^7.16.12"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "core-js": "^3.20.3",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "webpack": "^5.67.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.3"
+  }
+}
