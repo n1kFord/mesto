@@ -1,4 +1,4 @@
-import './styles/index.css';
+import "./index.css";
 
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
@@ -17,15 +17,9 @@ import {
   cardLinkInput,
   cardAddButton,
   initialCards,
+  config,
 } from "./utils/constants.js";
 /* включение валидации форм */
-
-const config = {
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inputErrorClass: "popup__input_type_error",
-  inactiveButtonClass: "popup__button_type_inactive",
-};
 
 const editFormValidator = new FormValidator(profileEditForm, config);
 editFormValidator.enableValidation();
@@ -39,38 +33,34 @@ cardFormValidator.enableValidation();
 const popupWithImage = new PopupWithImage(".element-popup");
 popupWithImage.setEventListeners();
 
+function createCard(name, link) {
+  const card = new Card(name, link, "element", {
+    handleCardClick: () => {
+      popupWithImage.openPopup(name, link);
+    },
+  });
+  const createdCard = card.generateCard();
+  return createdCard;
+} /* функция создания карточки */
+
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item.name, item.link, "element", {
-        handleCardClick: () => {
-          popupWithImage.openPopup(item.name, item.link);
-        },
-      });
-      const createdCard = card.generateCard();
-      cardList.addItem(createdCard);
+      const newCard = createCard(item.name, item.link);
+      cardList.addItem(newCard);
     },
   },
   ".elements"
-);
+); /* секция карточек */
 
 cardList.renderItems(); /* первоначальное добавление карточек */
 
 /* формы _________________________________________________*/
 const cardAddFormPopup = new PopupWithForm(".card-add-popup", {
-  formSubmit: (evt) => {
-    evt.preventDefault();
-    const cardName = cardNameInput.value;
-    const cardLink = cardLinkInput.value;
-    const card = new Card(cardName, cardLink, "element", {
-      handleCardClick: () => {
-        popupWithImage.openPopup(cardName, cardLink);
-      },
-    });
-
-    const createdCard = card.generateCard();
-    cardList.addItem(createdCard);
+  formSubmit: (data) => {
+    const newCard = createCard(data.cardname, data.link);
+    cardList.addItem(newCard);
     cardFormValidator.disableSubmitButton();
     cardAddFormPopup.closePopup();
   },
@@ -86,11 +76,10 @@ const user = new UserInfo({
 });
 
 const editFormPopup = new PopupWithForm(".profile-edit-popup", {
-  formSubmit: (evt) => {
-    evt.preventDefault();
+  formSubmit: (data) => {
     user.setUserInfo({
-      name: nameInput.value,
-      about: aboutInput.value,
+      name: data.fullname,
+      about: data.about,
     });
     editFormPopup.closePopup();
   },

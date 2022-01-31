@@ -8,10 +8,10 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const dataObject = {};
-    dataObject.name = this._nameElement.textContent;
-    dataObject.about = this._aboutElement.textContent;
-    return dataObject;
+    const userInfo = {};
+    userInfo.name = this._nameElement.textContent;
+    userInfo.about = this._aboutElement.textContent;
+    return userInfo;
   }
 
   setUserInfo({ name, about }) {

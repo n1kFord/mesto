@@ -9,10 +9,14 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
     },
-
+    
     devServer: {
         compress: true,
         hot: true,
+    },
+
+    performance: {
+        hints: false, /* ругается на большой вес шрифтов */
     },
 
     module: {
@@ -30,6 +34,7 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
                 type: 'asset/resource'
             },
+            
         ],
     },
     plugins: [
