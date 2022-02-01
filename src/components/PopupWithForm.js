@@ -24,17 +24,8 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  _resetFormErrors() {
-    this._inputs.forEach((input) => {
-      const errorMessage = this._form.querySelector(`.${input.id}-error`);
-      errorMessage.textContent = "";
-      input.classList.remove("popup__input_type_error");
-    });
-  } /* функция очистки от ошибок при закрытии попапа, сделал не через валидатор - ибо закрытие оверлея нужно реализовать в этом классе */
-
   closePopup() {
     super.closePopup();
-    this._resetFormErrors();
     this._form.reset();
   }
 }

@@ -1,12 +1,12 @@
 import "./index.css";
 
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import Popup from "./components/Popup.js";
-import Section from "./components/Section.js";
-import UserInfo from "./components/UserInfo.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Popup from "../components/Popup.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import {
   editButton,
   profileEditForm,
@@ -18,7 +18,7 @@ import {
   cardAddButton,
   initialCards,
   config,
-} from "./utils/constants.js";
+} from "../utils/constants.js";
 /* включение валидации форм */
 
 const editFormValidator = new FormValidator(profileEditForm, config);
@@ -97,6 +97,7 @@ editButton.addEventListener("click", function () {
 });
 
 cardAddButton.addEventListener("click", function () {
+  cardFormValidator.resetError();
   cardAddFormPopup.openPopup();
 });
 
