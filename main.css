@@ -499,6 +499,7 @@ template {
     border-radius: 100%;
     width: 120px;
     height: 120px;
+    object-fit: cover;
 }
 /*!***********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__info/profile__info.css ***!
@@ -747,6 +748,26 @@ template {
     white-space: nowrap;
     overflow: hidden;
 }
+/*!*******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__like-container/element__like-container.css ***!
+  \*******************************************************************************************************************/
+.element__like-container{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*!*****************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__counter/element__counter.css ***!
+  \*****************************************************************************************************/
+.element__counter {
+    margin: 3px 0 0;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+  }
 /*!***********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__text/element__text.css ***!
   \***********************************************************************************************/
