@@ -1,3 +1,6 @@
+/*!****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/vendor/normalize.css ***!
+  \****************************************************************************/
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -347,6 +350,9 @@ template {
 [hidden] {
   display: none;
 }
+/*!************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/vendor/fonts.css ***!
+  \************************************************************************/
 @font-face{
     font-family: Inter;
     src: url(9cd7588f47651215d52f.ttf);
@@ -366,6 +372,9 @@ template {
     font-style: normal;
 }
 
+/*!****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/page/page.css ***!
+  \****************************************************************************/
 .page{
     height: 100%;
     min-width: 320px;
@@ -377,6 +386,9 @@ template {
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
 }
+/*!********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/header/header.css ***!
+  \********************************************************************************/
 .header{
     margin: 45px auto 0;
     width: 880px;
@@ -395,6 +407,9 @@ template {
     }
 }
 
+/*!*********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/header/__logo/header__logo.css ***!
+  \*********************************************************************************************/
 .header__logo {
   width: 142px;
   height: 42px;
@@ -406,6 +421,9 @@ template {
   }
 }
 
+/*!*********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/header/__line/header__line.css ***!
+  \*********************************************************************************************/
 .header__line{
     margin: 41px 0 0 0;
     padding: 0;
@@ -421,11 +439,17 @@ template {
         margin-top: 31px;
     }
 }
+/*!**********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/content/content.css ***!
+  \**********************************************************************************/
 .content{
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
+/*!**********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/profile.css ***!
+  \**********************************************************************************/
 .profile{
     margin: 36.25px auto 0;
     padding: 0;
@@ -454,6 +478,9 @@ template {
         margin-top: 38.25px;
     }
 }
+/*!*******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__main-container/profile__main-container.css ***!
+  \*******************************************************************************************************************/
 .profile__main-container{
     display: flex;
     flex-direction: row;
@@ -465,11 +492,17 @@ template {
         flex-direction: column;
     }
 }
+/*!*************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__image/profile__image.css ***!
+  \*************************************************************************************************/
 .profile__image{
     border-radius: 100%;
     width: 120px;
     height: 120px;
 }
+/*!***********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__info/profile__info.css ***!
+  \***********************************************************************************************/
 .profile__info{
     margin: 0 0 0 29px;
     padding: 0;
@@ -482,6 +515,9 @@ template {
         margin-top: 22.25px;
     }
 }
+/*!***********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__text/profile__text.css ***!
+  \***********************************************************************************************/
 .profile__text{
     display: flex;
     flex-direction: column;
@@ -494,6 +530,9 @@ template {
         align-items: center;
     }
 }
+/*!***********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__name/profile__name.css ***!
+  \***********************************************************************************************/
 .profile__name{
     margin: 0;
     padding: 0;
@@ -514,6 +553,9 @@ template {
         line-height: 32.68px;
     }
 }
+/*!*************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__about/profile__about.css ***!
+  \*************************************************************************************************/
 .profile__about{
     margin: 16px 0 0 0;
     padding: 0;
@@ -545,6 +587,9 @@ template {
         line-height: 16.94px;
     }
 }
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__edit-button/profile__edit-button.css ***!
+  \*************************************************************************************************************/
 .profile__edit-button{
     background-image: url(a1892ea72cb87c8fc3aa.svg);
     width: 24px;
@@ -579,6 +624,9 @@ template {
         height: 18px;
     }
 }
+/*!***************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__button/profile__button.css ***!
+  \***************************************************************************************************/
 .profile__button{
     background-image: url(d86bb2edc2f6eadb96b7.svg);
     background-repeat: no-repeat;
@@ -618,6 +666,9 @@ template {
         font-size: 35px;
     }
 }
+/*!************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/elements.css ***!
+  \************************************************************************************/
 .elements{
     width: 880px;
     margin: 27.25px auto 0;
@@ -645,6 +696,9 @@ template {
         margin-top: 16px;
     }
 }
+/*!**********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/element.css ***!
+  \**********************************************************************************/
 .element {
   width: 282px;
   height: 361px;
@@ -667,6 +721,9 @@ template {
   }
 }
 
+/*!*************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__image/element__image.css ***!
+  \*************************************************************************************************/
 .element__image{
     margin: 0;
     padding: 0;
@@ -675,6 +732,9 @@ template {
     cursor: pointer;
     object-fit: cover;
 }
+/*!*****************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/elements/__ordinary-container/elements__ordinary-container.css ***!
+  \*****************************************************************************************************************************/
 .elements__ordinary-container{
     margin: 25px auto 0;
     padding: 0;
@@ -687,6 +747,9 @@ template {
     white-space: nowrap;
     overflow: hidden;
 }
+/*!***********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__text/element__text.css ***!
+  \***********************************************************************************************/
 .element__text{
     margin: 0;
     padding: 0;
@@ -698,6 +761,9 @@ template {
     white-space: nowrap;
     overflow: hidden;
 }
+/*!***********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__like/element__like.css ***!
+  \***********************************************************************************************/
 .element__like{
     width: 22px;
     height: 19px;
@@ -713,9 +779,15 @@ template {
     transition: .2s ease-in;
 }
 
+/*!*****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__like/_type/element__like_type_active.css ***!
+  \*****************************************************************************************************************/
 .element__like_type_active{
     background-image: url(fe17a515669479b1e649.svg);
 }
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element/__delete-icon/element__delete-icon.css ***!
+  \*************************************************************************************************************/
 .element__delete-icon{
     position: absolute;
     z-index: 20;
@@ -731,6 +803,9 @@ template {
   .element__delete-icon:hover{
     opacity: 1;
   }
+/*!********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/footer/footer.css ***!
+  \********************************************************************************/
 .footer{
     width: 880px;
     margin: 67px auto 0;
@@ -756,6 +831,9 @@ template {
         margin-top: 48px;
     }
 }
+/*!*******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/footer/__copyright/footer__copyright.css ***!
+  \*******************************************************************************************************/
 .footer__copyright{
     padding: 0;
     margin: 0;
@@ -771,6 +849,9 @@ template {
         margin-top: 16px;
     }
 }
+/*!******************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/popup.css ***!
+  \******************************************************************************/
 .popup {
   position: fixed;
   top: 0;
@@ -785,6 +866,9 @@ template {
 }
 
 
+/*!*********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/_opened/popup_opened.css ***!
+  \*********************************************************************************************/
 .popup_opened{
     display: flex;
     height: 100%;
@@ -792,6 +876,9 @@ template {
     z-index: 200;
     opacity: 1;
 }
+/*!*****************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__container/popup__container.css ***!
+  \*****************************************************************************************************/
 .popup__container {
   margin: auto;
   display: flex;
@@ -811,6 +898,9 @@ template {
   }
 }
 
+/*!*******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__close-icon/popup__close-icon.css ***!
+  \*******************************************************************************************************/
 .popup__close-icon{
     position: absolute;
     top: -40px;
@@ -843,6 +933,9 @@ template {
         right: 0;
     }
 }
+/*!*******************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__form/popup__form.css ***!
+  \*******************************************************************************************/
 .popup__form{
     display: flex;
     flex-direction: column;
@@ -854,12 +947,18 @@ template {
         margin-top: 44px;
     }
 }
+/*!***************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__form-set/popup__form-set.css ***!
+  \***************************************************************************************************/
 .popup__form-set{
     background: transparent;
     border: 0;
     display: flex;
     flex-direction: column;
 }
+/*!*******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__form-placeholder/popup__form-placeholder.css ***!
+  \*******************************************************************************************************************/
 .popup__form-placeholder{
     margin: 5px 0 0 22px;
     font-family: Inter;
@@ -875,15 +974,24 @@ template {
         margin-left: 6px;
     }
 }
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__input/_type/popup__input_type_error.css ***!
+  \**************************************************************************************************************/
 .popup__input_type_error:invalid{
     border-bottom: 1px solid red;
 }
+/*!*******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__form-set/popup__form-set.css (1) ***!
+  \*******************************************************************************************************/
 .popup__form-set{
     background: transparent;
     border: 0;
     display: flex;
     flex-direction: column;
 }
+/*!*********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__title/popup__title.css ***!
+  \*********************************************************************************************/
 .popup__title{
     margin: 34px 0 0 36px;
     padding: 0;
@@ -900,6 +1008,9 @@ template {
         margin: 25px 0 0 22px;
     }
 }
+/*!*********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__input/popup__input.css ***!
+  \*********************************************************************************************/
 .popup__input{
     width: 358px;
     margin: 30px auto 0;
@@ -919,6 +1030,9 @@ template {
     }
 }
 
+/*!***********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__button/popup__button.css ***!
+  \***********************************************************************************************/
 .popup__button {
   margin: 28px auto 0; /* изменил отступ т.к. при ошибках кнопка слишком сильно съезжает вниз */
   color: white;
@@ -950,6 +1064,9 @@ template {
   }
 }
 
+/*!*******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/popup/__button/_type/popup__button_type_inactive.css ***!
+  \*******************************************************************************************************************/
 .popup__button_type_inactive{
     border: 1px solid gray;
     background-color: transparent;
@@ -963,6 +1080,9 @@ template {
     background-color: transparent;
     color: gray;
 } /* сделано так, поскольку hover из popup__button мешает при заблокированной кнопке */
+/*!**********************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element-popup/element-popup.css ***!
+  \**********************************************************************************************/
 .element-popup {
     position: fixed;
     top: 0;
@@ -975,15 +1095,24 @@ template {
     justify-content: center;
   }
   
+/*!*********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element-popup/__container/element-popup__container.css ***!
+  \*********************************************************************************************************************/
 .element-popup__container {
     position: relative;
   }
+/*!***********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element-popup/__text/element-popup__text.css ***!
+  \***********************************************************************************************************/
 .element-popup__text{
     margin-top: 10px;
     font-size: 12px;
     line-height: 14px;
     color: white;
 }
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/element-popup/__image/element-popup__image.css ***!
+  \*************************************************************************************************************/
 .element-popup__image {
   min-width: 450px;
   min-height: 350px;
@@ -1000,6 +1129,9 @@ template {
   }
 }
 
+/*!*****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/pages/index.css ***!
+  \*****************************************************************************************************************/
 /* important ///////////*/
 /*//////////////////////*/
 
