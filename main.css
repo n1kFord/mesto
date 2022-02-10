@@ -500,6 +500,12 @@ template {
     width: 120px;
     height: 120px;
     object-fit: cover;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.profile__image:hover{
+    opacity: .5;
 }
 /*!***********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/profile/__info/profile__info.css ***!
@@ -1150,6 +1156,28 @@ template {
   }
 }
 
+/*!******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/card-delete-popup/card-delete-popup.css ***!
+  \******************************************************************************************************/
+
+/*!*****************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/card-delete-popup/__container/card-delete-popup__container.css ***!
+  \*****************************************************************************************************************************/
+.card-delete-popup__container{
+    min-height: 100px;
+    height: 181px;
+}
+/*!****************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/new-avatar-popup/new-avatar-popup.css ***!
+  \****************************************************************************************************/
+
+/*!***************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/blocks/new-avatar-popup/__container/new-avatar-popup__container.css ***!
+  \***************************************************************************************************************************/
+.new-avatar-popup__container{
+    min-height: 100px;
+    height: 272px;
+}
 /*!*****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/pages/index.css ***!
   \*****************************************************************************************************************/
@@ -1177,3 +1205,20 @@ template {
 /* --start of |element-popup|--*/
 /*___end of |element-popup|____*/
 
+/* --start of |card-delete-popup|--*/
+/*___end of |card-delete-popup|____*/
+
+/* --start of |new-avatar-popup|--*/
+/*___end of |new-avatar-popup|____*/
+
+.profile__avatar-edit{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 10px 10px 10px white;
+    width: 26px;
+    height: 26px;
+    border: 5px solid red;
+}
