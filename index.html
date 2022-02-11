@@ -21,12 +21,14 @@
     <main class="content">
       <section class="profile">
         <div class="profile__main-container">
-
-          <img
-            src="74c3c0fb802dcfa83abb.jpg"
-            class="profile__image"
-            alt="аватарка пользователя"
-          />
+          <div class="profile__picture-container">
+            <img
+              src="74c3c0fb802dcfa83abb.jpg"
+              class="profile__image"
+              alt="аватарка пользователя"
+            />
+            <img src="a086f758840ae814ecde.svg" class="profile__avatar-edit" alt="Редактирование">
+          </div>
           <div class="profile__info">
             <div class="profile__text">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -75,7 +77,6 @@
               class="element-popup__image"
               alt="Карачаево-Черкесия"
             />
-            <img src="a086f758840ae814ecde.svg" class="profile__avatar-edit" alt="Редактирование">
             <p class="element-popup__text">Карачаево-Черкессия</p>
           </div>
         </div>
@@ -178,17 +179,19 @@
     <!--card-delete-popup-->
     <article class="popup card-delete-popup">
       <div class="popup__container card-delete-popup__container">
+        
         <button type="button" class="popup__close-icon"></button>
         <h2 class="popup__title">Вы уверены?</h2>
+        <form class="popup__form popup__form_type_delete-popup">
             <button
               type="submit"
-              disabled
               class="popup__button card-delete-popup"
             >
               Да
             </button>
           </fieldset>
         </form>
+      </form>
       </div>
     </article>
     <!--------------------->
@@ -200,7 +203,7 @@
     <h2 class="popup__title">Обновить аватар</h2>
     <form
       class="popup__form popup__form_type_new-avatar"
-      name="add"
+      name="edit"
       novalidate
     >
       <fieldset class="popup__form-set">
