@@ -17,6 +17,8 @@
 /* -----start of |profile| ----*/
 @import url("../blocks/profile/profile.css");
 @import url("../blocks/profile/__main-container/profile__main-container.css");
+@import url("../blocks/profile/__picture-container/profile__picture-container.css");
+@import url("../blocks/profile/__avatar-edit/profile__avatar-edit.css");
 @import url("../blocks/profile/__image/profile__image.css");
 @import url("../blocks/profile/__info/profile__info.css");
 @import url("../blocks/profile/__text/profile__text.css");
@@ -31,6 +33,8 @@
 @import url("../blocks/element/element.css");
 @import url("../blocks/element/__image/element__image.css");
 @import url("../blocks/elements/__ordinary-container/elements__ordinary-container.css");
+@import url("../blocks/element/__like-container/element__like-container.css");
+@import url("../blocks/element/__counter/element__counter.css");
 @import url("../blocks/element/__text/element__text.css");
 @import url("../blocks/element/__like/element__like.css");
 @import url("../blocks/element/__like/_type/element__like_type_active.css");
@@ -48,6 +52,7 @@
 @import url("../blocks/popup/__container/popup__container.css");
 @import url("../blocks/popup/__close-icon/popup__close-icon.css");
 @import url("../blocks/popup/__form/popup__form.css");
+@import url("../blocks/popup/__form/_type/popup__form_type_delete-popup.css");
 @import url("../blocks/popup/__form-set/popup__form-set.css");
 @import url("../blocks/popup/__form-placeholder/popup__form-placeholder.css");
 @import url("../blocks/popup/__input/_type/popup__input_type_error.css");
@@ -64,3 +69,13 @@
 @import url("../blocks/element-popup/__text/element-popup__text.css");
 @import url("../blocks/element-popup/__image/element-popup__image.css");
 /*___end of |element-popup|____*/
+
+/* --start of |card-delete-popup|--*/
+@import url("../blocks/card-delete-popup/card-delete-popup.css");
+@import url("../blocks/card-delete-popup/__container/card-delete-popup__container.css");
+/*___end of |card-delete-popup|____*/
+
+/* --start of |new-avatar-popup|--*/
+@import url('../blocks/new-avatar-popup/new-avatar-popup.css');
+@import url('../blocks/new-avatar-popup/__container/new-avatar-popup__container.css');
+/*___end of |new-avatar-popup|____*/

@@ -2,10 +2,7 @@ export default class Popup {
   constructor(selector) {
     this._popupElement = document.querySelector(selector);
     this._closeIcon = this._popupElement.querySelector(".popup__close-icon");
-    this._handleEscClose =
-      this._handleEscClose.bind(
-        this
-      ); /* для ревьювера: я всегда использую преттиер и для конкретно этих строк - тоже. данное разделение кода полностью лежит на плагине для vsc. */
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   openPopup() {
