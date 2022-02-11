@@ -6,4 +6,4 @@
 
 Благодаря приобретенным навыкам, были использованы templates и много различных методов js, в том числе и валидация форм.
 
-[ссылка на страницу github-pages](https://n1kford.github.io/mesto/index.html)
+[ссылка на страницу github-pages](https://n1kford.github.io/mesto)
