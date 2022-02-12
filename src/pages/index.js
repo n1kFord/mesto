@@ -108,45 +108,53 @@ const cardList = new Section(
   ".elements"
 );
 
-api
-  .getInitialCards()
-  .then((cards) => {
-    api
-      .getInfoAboutUser()
-      .then((res) => {
-        cards.forEach((card) => {
-          const newCard = createCard(
-            card.name,
-            card.link,
-            card._id,
-            card.owner._id,
-            res._id
-          );
-          newCard.querySelector(".element__counter").textContent =
-            card.likes.length;
-          cardList.addItem(
-            newCard
-          ); /* все это сделано только для возможности получения айди пользователя в this в Card, а позже проверять на isOwner */
+function renderCardsFromServer() {
+  api
+    .getInitialCards()
+    .then((cards) => {
+      api
+        .getInfoAboutUser()
+        .then((res) => {
+          cards.forEach((card) => {
+            const newCard = createCard(
+              card.name,
+              card.link,
+              card._id,
+              card.owner._id,
+              res._id
+            );
+            newCard.querySelector(".element__counter").textContent =
+              card.likes.length;
+            cardList.addItem(
+              newCard
+            ); /* все это сделано только для возможности получения айди пользователя в this в Card, а позже проверять на isOwner */
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  }); /* первоначальное добавление карточек */
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    }); 
+}
+
+renderCardsFromServer();/* первоначальное добавление карточек */
+
 /* формы и api_________________________________________________*/
 const cardAddFormPopup = new PopupWithForm(".card-add-popup", {
   formSubmit: (data) => {
-    const newCard = createCard(data.cardname, data.link);
-    cardList.addItem(newCard);
     cardAddFormPopup.renderLoader(true);
     api
       .addNewCard(
         data
       ) /* так-же баг, лайкнуть вновь создавшуюся карточку нельзя, только при перезагрузке */
-      .then(() => {
+      .then((res) => {
+        console.log(res);
+        cardList.clearItems();
+        renderCardsFromServer(); /* багфикс отсутствия возможности лайка/удаления карточки после её создания.
+        метод заключается в том, что-бы после сабмита формы отправлять запрос на сервер ; очищать контейнер карточек ; рендерить с сервера
+        так возможность лайка/удаления остается */
         cardFormValidator.disableSubmitButton();
         cardAddFormPopup.renderLoader(false);
         cardAddFormPopup.closePopup();
@@ -182,8 +190,7 @@ api
 
 const editFormPopup = new PopupWithForm(".profile-edit-popup", {
   formSubmit: (data) => {
-    const userinfoATM =
-      user.getUserInfo(); /* информация о пользователе в данный момент */
+    const userinfoATM = user.getUserInfo(); /* информация о пользователе в данный момент */
     user.setUserInfo({
       name: data.fullname,
       about: data.about,
@@ -206,8 +213,7 @@ editFormPopup.setEventListeners();
 
 const newAvatarFormPopup = new PopupWithForm(".new-avatar-popup", {
   formSubmit: (data) => {
-    const userinfoATM =
-      user.getUserInfo(); /* информация о пользователе в данный момент */
+    const userinfoATM = user.getUserInfo(); /* информация о пользователе в данный момент */
     user.setUserInfo({
       name: userinfoATM.name,
       about: userinfoATM.about,

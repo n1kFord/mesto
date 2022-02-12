@@ -18,9 +18,6 @@ export default class Api {
       })
       .then((data) => {
         return data;
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
       });
   }
 
@@ -64,10 +61,7 @@ export default class Api {
         return Promise.reject(res.status);
       })
       .then((data) => {
-        return data;
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
+        return data.reverse(); /* теперь карточки выводятся в начале */
       });
   }
 
@@ -76,9 +70,6 @@ export default class Api {
       .then((res) => {
         console.log("res.id: " + res._id);
         return res._id;
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
       });
   }
 
