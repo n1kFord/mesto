@@ -157,6 +157,8 @@ const cardAddFormPopup = new PopupWithForm(".card-add-popup", {
           user.showId()
         );
         cardList.addItem(newCard);
+        cardFormValidator.disableSubmitButton();
+        cardAddFormPopup.closePopup();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -164,8 +166,6 @@ const cardAddFormPopup = new PopupWithForm(".card-add-popup", {
       .finally(() => {
         cardAddFormPopup.renderLoader(false);
       });
-    cardFormValidator.disableSubmitButton();
-    cardAddFormPopup.closePopup();
   },
 });
 
@@ -173,16 +173,16 @@ cardAddFormPopup.setEventListeners();
 
 const editFormPopup = new PopupWithForm(".profile-edit-popup", {
   formSubmit: (data) => {
-    const userinfoATM = user.getUserInfo(); /* информация о пользователе в данный момент */
     editFormPopup.renderLoader(true);
     api
       .setInfoAboutUser(data)
-      .then(() => {
+      .then((info) => {
+        console.log(info);
         user.setUserInfo({
-          name: data.fullname,
-          about: data.about,
-          image: userinfoATM.image,
-          id: user.showId(),
+          name: info.name,
+          about: info.about,
+          image: info.avatar,
+          id: info._id,
         });
         editFormPopup.closePopup();
       })
@@ -199,15 +199,15 @@ editFormPopup.setEventListeners();
 
 const newAvatarFormPopup = new PopupWithForm(".new-avatar-popup", {
   formSubmit: (data) => {
-    const userinfoATM = user.getUserInfo(); /* информация о пользователе в данный момент */
     newAvatarFormPopup.renderLoader(true);
     api
       .uploadNewAvatar(data.avatarlink)
-      .then(() => {
+      .then((info) => {
         user.setUserInfo({
-          name: userinfoATM.name,
-          about: userinfoATM.about,
-          image: data.avatarlink,
+          name: info.name,
+          about: info.about,
+          image: info.avatar,
+          id: info._id,
         });
         newAvatarFormPopup.closePopup();
       })
