@@ -4,17 +4,13 @@ export const popupCardAdd = document.querySelector(".card-add-popup");
 export const imagePopupImage = document.querySelector(".element-popup__image");
 export const imagePopupText = document.querySelector(".element-popup__text");
 export const editButton = document.querySelector(".profile__edit-button");
-export const avatarEditButton = document.querySelector(".profile__image");
+export const avatarEditButton = document.querySelector(".profile__avatar-edit");
 export const profileEditForm = document.querySelector(".popup__form_type_edit");
 export const nameInput = document.querySelector(".popup__input_type_name");
 export const aboutInput = document.querySelector(".popup__input_type_about");
 export const cardAddForm = document.querySelector(".popup__form_type_card-add");
-export const newAvatarForm = document.querySelector(".popup__form_type_new-avatar");
-export const cardNameInput = document.querySelector(
-  ".popup__input_type_card-name"
-);
-export const cardLinkInput = document.querySelector(
-  ".popup__input_type_card-link"
+export const newAvatarForm = document.querySelector(
+  ".popup__form_type_new-avatar"
 );
 export const userName = document.querySelector(".profile__name");
 export const userAbout = document.querySelector(".profile__about");

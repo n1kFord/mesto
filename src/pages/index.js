@@ -8,15 +8,13 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithSubmit from "../components/PopupWithSubmit.js";
+import PopupWithDelete from "../components/PopupWithDelete.js";
 import {
   editButton,
   profileEditForm,
   nameInput,
   aboutInput,
   cardAddForm,
-  cardNameInput,
-  cardLinkInput,
   cardAddButton,
   avatarEditButton,
   newAvatarForm,
@@ -39,15 +37,22 @@ avatarFormValidator.enableValidation();
 const popupWithImage = new PopupWithImage(".element-popup");
 popupWithImage.setEventListeners();
 
-const cardDeletePopup = new PopupWithSubmit(".card-delete-popup", {
+const cardDeletePopup = new PopupWithDelete(".card-delete-popup", {
   submitFunction: () => {
+    cardDeletePopup.renderLoader(true);
     api
       .deleteCard(cardDeletePopup.returnId())
       .then(() => {
+        let card = cardDeletePopup.returnItem();
+        card.remove();
+        card = null;
         cardDeletePopup.closePopup();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        cardDeletePopup.renderLoader(false);
       });
   },
 });
@@ -61,22 +66,20 @@ const api = new Api({
   },
 }); /* api */
 
-function createCard(name, link, id, ownerId, userId) {
-  const card = new Card(name, link, id, ownerId, userId, "element", {
+function createCard(name, link, id, likes, cardId, userId) {
+  const card = new Card(name, link, id, likes, cardId, userId, "element", {
     handleCardClick: () => {
       popupWithImage.openPopup(name, link);
     },
-    handleDeleteCardClick: (callback) => {
-      cardDeletePopup.openPopup(
-        id,
-        callback
-      ); /* так-же баг: карточку нельзя удалить после создания, только после перезагрузки */
+    handleDeleteCardClick: () => {
+      cardDeletePopup.openPopup(id, card.showCard());
     },
     handleLikeEvent: () => {
       api
         .likeCard(id)
-        .then(() => {
-          card.addLikes(1);
+        .then((data) => {
+          card.toggleLikeState();
+          card.updateLikes(data.likes.length);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -85,8 +88,9 @@ function createCard(name, link, id, ownerId, userId) {
     handleDislikeEvent: () => {
       api
         .unlikeCard(id)
-        .then(() => {
-          card.subtractLikes(1);
+        .then((data) => {
+          card.toggleLikeState();
+          card.updateLikes(data.likes.length);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -101,110 +105,92 @@ const cardList = new Section(
   {
     items: [],
     renderer: (item) => {
-      const card = createCard(item.name, item.link, item._id, item.owner._id);
+      const card = createCard(
+        item.name,
+        item.link,
+        item._id,
+        item.likes,
+        item.owner._id,
+        user.showId()
+      );
       cardList.addItem(card);
     },
   },
   ".elements"
 );
 
-function renderCardsFromServer() {
-  api
-    .getInitialCards()
-    .then((cards) => {
-      api
-        .getInfoAboutUser()
-        .then((res) => {
-          cards.forEach((card) => {
-            const newCard = createCard(
-              card.name,
-              card.link,
-              card._id,
-              card.owner._id,
-              res._id
-            );
-            newCard.querySelector(".element__counter").textContent =
-              card.likes.length;
-            cardList.addItem(
-              newCard
-            ); /* все это сделано только для возможности получения айди пользователя в this в Card, а позже проверять на isOwner */
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    }); 
-}
+const user = new UserInfo({
+  nameSelector: ".profile__name",
+  aboutSelector: ".profile__about",
+  imageSelector: ".profile__image",
+  id: "",
+});
 
-renderCardsFromServer();/* первоначальное добавление карточек */
+Promise.all([api.getInfoAboutUser(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    user.setUserInfo({
+      name: userData.name,
+      about: userData.about,
+      image: userData.avatar,
+      id: userData._id,
+    });
+    cardList.renderItems(cards);
+  })
+  .catch((err) => {
+    console.log(err);
+  }); /* первоначальное добавление карточек и данных о пользователе */
 
 /* формы и api_________________________________________________*/
 const cardAddFormPopup = new PopupWithForm(".card-add-popup", {
   formSubmit: (data) => {
     cardAddFormPopup.renderLoader(true);
+
     api
-      .addNewCard(
-        data
-      ) /* так-же баг, лайкнуть вновь создавшуюся карточку нельзя, только при перезагрузке */
-      .then((res) => {
-        console.log(res);
-        cardList.clearItems();
-        renderCardsFromServer(); /* багфикс отсутствия возможности лайка/удаления карточки после её создания.
-        метод заключается в том, что-бы после сабмита формы отправлять запрос на сервер ; очищать контейнер карточек ; рендерить с сервера
-        так возможность лайка/удаления остается */
-        cardFormValidator.disableSubmitButton();
-        cardAddFormPopup.renderLoader(false);
-        cardAddFormPopup.closePopup();
+      .addNewCard(data)
+      .then((card) => {
+        const newCard = createCard(
+          card.name,
+          card.link,
+          card._id,
+          card.likes,
+          card.owner._id,
+          user.showId()
+        );
+        cardList.addItem(newCard);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        cardAddFormPopup.renderLoader(false);
       });
+    cardFormValidator.disableSubmitButton();
+    cardAddFormPopup.closePopup();
   },
 });
 
 cardAddFormPopup.setEventListeners();
 
-/*          /\/\/\/\/\             */
-
-const user = new UserInfo({
-  nameSelector: ".profile__name",
-  aboutSelector: ".profile__about",
-  imageSelector: ".profile__image",
-});
-
-api
-  .getInfoAboutUser()
-  .then((info) => {
-    user.setUserInfo({
-      name: info.name,
-      about: info.about,
-      image: info.avatar,
-    });
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  }); /* изменение информации пользователя в следствии прихода данных с сервера */
-
 const editFormPopup = new PopupWithForm(".profile-edit-popup", {
   formSubmit: (data) => {
     const userinfoATM = user.getUserInfo(); /* информация о пользователе в данный момент */
-    user.setUserInfo({
-      name: data.fullname,
-      about: data.about,
-      image: userinfoATM.image,
-    });
     editFormPopup.renderLoader(true);
     api
       .setInfoAboutUser(data)
       .then(() => {
-        editFormPopup.renderLoader(false);
+        user.setUserInfo({
+          name: data.fullname,
+          about: data.about,
+          image: userinfoATM.image,
+          id: user.showId(),
+        });
         editFormPopup.closePopup();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editFormPopup.renderLoader(false);
       });
   },
 });
@@ -214,25 +200,28 @@ editFormPopup.setEventListeners();
 const newAvatarFormPopup = new PopupWithForm(".new-avatar-popup", {
   formSubmit: (data) => {
     const userinfoATM = user.getUserInfo(); /* информация о пользователе в данный момент */
-    user.setUserInfo({
-      name: userinfoATM.name,
-      about: userinfoATM.about,
-      image: data.avatarlink,
-    });
     newAvatarFormPopup.renderLoader(true);
     api
       .uploadNewAvatar(data.avatarlink)
       .then(() => {
-        newAvatarFormPopup.renderLoader(false);
+        user.setUserInfo({
+          name: userinfoATM.name,
+          about: userinfoATM.about,
+          image: data.avatarlink,
+        });
         newAvatarFormPopup.closePopup();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        newAvatarFormPopup.renderLoader(false);
       });
   },
 });
 
 newAvatarFormPopup.setEventListeners();
+/*___________________________________*/
 
 editButton.addEventListener("click", function () {
   const userObjectInfo = user.getUserInfo();

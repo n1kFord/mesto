@@ -6,11 +6,3 @@
     cursor: pointer;
     transition: .2s linear;
 }
-
-.profile__image:hover{
-    opacity: .5;
-}
-
-.profile__image:hover + .profile__avatar-edit{
-    opacity: 1;
-}

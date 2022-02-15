@@ -8,7 +8,3 @@
     cursor: pointer;
     transition: .2s linear;
 }
-
-.profile__avatar-edit:hover{
-    opacity: 1;
-}

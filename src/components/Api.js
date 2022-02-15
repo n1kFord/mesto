@@ -4,18 +4,20 @@ export default class Api {
     this._token = options.headers.authorization;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`);
+  }
+
   getInfoAboutUser() {
     return fetch(`${this._adress}/users/me`, {
       headers: {
         authorization: `${this._token}`,
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(res.status);
-      })
+      .then(this._checkResponse)
       .then((data) => {
         return data;
       });
@@ -32,7 +34,7 @@ export default class Api {
         name: `${info.fullname}`,
         about: `${info.about}`,
       }),
-    });
+    }).then(this._checkResponse);
   }
 
   uploadNewAvatar(link) {
@@ -45,7 +47,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: `${link}`,
       }),
-    });
+    }).then(this._checkResponse);
   }
 
   getInitialCards() {
@@ -54,22 +56,9 @@ export default class Api {
         authorization: `${this._token}`,
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(res.status);
-      })
+      .then(this._checkResponse)
       .then((data) => {
         return data.reverse(); /* теперь карточки выводятся в начале */
-      });
-  }
-
-  getUserId() {
-    this.getInfoAboutUser()
-      .then((res) => {
-        console.log("res.id: " + res._id);
-        return res._id;
       });
   }
 
@@ -84,7 +73,7 @@ export default class Api {
         name: `${info.cardname}`,
         link: `${info.link}`,
       }),
-    });
+    }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
@@ -94,7 +83,7 @@ export default class Api {
         authorization: `${this._token}`,
         "Content-Type": "application/json",
       },
-    });
+    }).then(this._checkResponse);
   }
 
   likeCard(cardId) {
@@ -104,7 +93,7 @@ export default class Api {
         authorization: `${this._token}`,
         "Content-Type": "application/json",
       },
-    });
+    }).then(this._checkResponse);
   }
 
   unlikeCard(cardId) {
@@ -114,6 +103,6 @@ export default class Api {
         authorization: `${this._token}`,
         "Content-Type": "application/json",
       },
-    });
+    }).then(this._checkResponse);
   }
 }
